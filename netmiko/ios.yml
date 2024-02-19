@@ -1,0 +1,54 @@
+- name: Configure IOS-XE devices
+  hosts: ios-xe
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+
+    - name: Configure the login banner
+      cisco.ios.ios_banner:
+        banner: login
+        text: |
+          this is my login banner
+          that contains a multiline
+          string
+        state: present
+
+    - name: Modify interfaces
+      cisco.ios.ios_interfaces:
+        config:
+          - name: GigabitEthernet2
+            description: OSPF interface
+            enabled: true
+          - name: GigabitEthernet3
+            description: Configured and Merged by Ansible Network
+            enabled: false
+          - name: GigabitEthernet4
+            description: Configured and Merged by Ansible Network
+            enabled: false
+            speed: 1000
+            #duplex: full
+          - name: Loopback120
+            description: Configured and Merged by Ansible Network
+            enabled: true
+        state: merged
+
+    - name: Add L3 interfaces config
+      cisco.ios.ios_l3_interfaces:
+        config:
+          - name: Loopback120
+            ipv4:
+              - address: 120.1.1.2/32
+        state: merged
+
+    - name: Loop
+      cisco.ios.ios_interfaces:
+        config:
+          - name: "Loopback{{ item }}"
+            description: "Configured and Merged by Ansible Network {{ item }}"
+            enabled: true
+        state: merged
+      loop:
+        - 121
+        - 122
+        - 123

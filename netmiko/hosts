@@ -1,0 +1,9 @@
+[all:vars]
+ansible_user=cisco
+ansible_ssh_pass=cisco
+ansible_connection=network_cli
+
+# hosts
+[routers]
+ios-xe ansible_host=192.168.200.81 ansible_network_os=ios
+ios-xr ansible_host=192.168.200.82 ansible_network_os=iosxr

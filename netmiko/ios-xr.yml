@@ -1,0 +1,41 @@
+- name: Configure IOS-XR devices
+  hosts: ios-xr
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+
+    - name: enable netconf service on port 830
+      iosxr_netconf:
+        listens_on: 830
+        state: present
+      connection: netconf
+
+    - name: set welcome banner to device!
+      cisco.iosxr.iosxr_banner:
+        banner: login
+        text: |
+          @this is my login banner
+          that contains a multiline
+          string@
+        state: present
+      connection: netconf
+
+    - name: add Loopback
+      cisco.iosxr.iosxr_interfaces:
+        config:
+          - name: Loopback120
+            description: Ansible interface
+            enabled: true 
+        state: merged
+      connection: netconf
+
+
+    - name: add Loopback L3
+      cisco.iosxr.iosxr_l3_interfaces:
+        config:
+          - name: Loopback120
+            ipv4:
+              - address: 120.1.1.1/32
+        state: merged
+      

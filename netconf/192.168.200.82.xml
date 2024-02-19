@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?><data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <aaa xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-locald-admin-cfg">
+   <usernames>
+    <username>
+     <name>cisco</name>
+     <secret>
+      <type>type5</type>
+      <secret5>$1$h7eD$m/emAosJmZwtuaaIWUUhD/</secret5>
+     </secret>
+    </username>
+   </usernames>
+  </aaa>
+  <crypto xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-crypto-sam-cfg">
+   <ssh xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-crypto-ssh-cfg">
+    <server>
+     <v2/>
+     <netconf>830</netconf>
+     <netconf-vrf-table>
+      <vrf>
+       <vrf-name>default</vrf-name>
+       <enable/>
+      </vrf>
+     </netconf-vrf-table>
+    </server>
+   </ssh>
+  </crypto>
+  <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
+   <interface-configuration>
+    <active>act</active>
+    <interface-name>Loopback0</interface-name>
+    <interface-virtual/>
+    <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
+     <addresses>
+      <primary>
+       <address>2.2.2.2</address>
+       <netmask>255.255.255.255</netmask>
+      </primary>
+     </addresses>
+    </ipv4-network>
+   </interface-configuration>
+   <interface-configuration>
+    <active>act</active>
+    <interface-name>Loopback120</interface-name>
+    <interface-virtual/>
+    <description>Ansible interface</description>
+    <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
+     <addresses>
+      <primary>
+       <address>120.1.1.1</address>
+       <netmask>255.255.255.255</netmask>
+      </primary>
+     </addresses>
+    </ipv4-network>
+   </interface-configuration>
+   <interface-configuration>
+    <active>act</active>
+    <interface-name>MgmtEth0/0/CPU0/0</interface-name>
+    <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
+     <addresses>
+      <primary>
+       <address>192.168.200.82</address>
+       <netmask>255.255.255.0</netmask>
+      </primary>
+     </addresses>
+    </ipv4-network>
+   </interface-configuration>
+   <interface-configuration>
+    <active>act</active>
+    <interface-name>GigabitEthernet0/0/0/0</interface-name>
+    <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
+     <addresses>
+      <primary>
+       <address>10.1.2.2</address>
+       <netmask>255.255.255.252</netmask>
+      </primary>
+     </addresses>
+    </ipv4-network>
+   </interface-configuration>
+   <interface-configuration>
+    <active>act</active>
+    <interface-name>GigabitEthernet0/0/0/1</interface-name>
+    <shutdown/>
+   </interface-configuration>
+   <interface-configuration>
+    <active>act</active>
+    <interface-name>GigabitEthernet0/0/0/2</interface-name>
+    <shutdown/>
+   </interface-configuration>
+  </interface-configurations>
+  <banners xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-infra-infra-cfg">
+   <banner>
+    <banner-name>login</banner-name>
+    <banner-text>@this is my login banner
+that contains a multiline
+string@</banner-text>
+   </banner>
+  </banners>
+  <syslog xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-infra-syslog-cfg">
+   <console-logging>
+    <logging-level>disable</logging-level>
+   </console-logging>
+   <monitor-logging>
+    <logging-level>debug</logging-level>
+   </monitor-logging>
+  </syslog>
+  <router-static xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ip-static-cfg">
+   <default-vrf>
+    <address-family>
+     <vrfipv4>
+      <vrf-unicast>
+       <vrf-prefixes>
+        <vrf-prefix>
+         <prefix>0.0.0.0</prefix>
+         <prefix-length>0</prefix-length>
+         <vrf-route>
+          <vrf-next-hop-table>
+           <vrf-next-hop-next-hop-address>
+            <next-hop-address>192.168.200.1</next-hop-address>
+           </vrf-next-hop-next-hop-address>
+          </vrf-next-hop-table>
+         </vrf-route>
+        </vrf-prefix>
+       </vrf-prefixes>
+      </vrf-unicast>
+     </vrfipv4>
+    </address-family>
+   </default-vrf>
+  </router-static>
+  <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+   <instance>
+    <instance-name>default</instance-name>
+    <instance-as>
+     <as>0</as>
+     <four-byte-as>
+      <as>65000</as>
+      <bgp-running/>
+     </four-byte-as>
+    </instance-as>
+   </instance>
+  </bgp>
+  <ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-ospf-cfg">
+   <processes>
+    <process>
+     <process-name>1</process-name>
+     <default-vrf>
+      <area-addresses>
+       <area-area-id>
+        <area-id>0</area-id>
+        <running/>
+        <name-scopes>
+         <name-scope>
+          <interface-name>Loopback0</interface-name>
+          <running/>
+          <passive>true</passive>
+         </name-scope>
+         <name-scope>
+          <interface-name>GigabitEthernet0/0/0/0</interface-name>
+          <running/>
+          <network-type>point-to-point</network-type>
+         </name-scope>
+        </name-scopes>
+       </area-area-id>
+      </area-addresses>
+     </default-vrf>
+     <start/>
+    </process>
+   </processes>
+  </ospf>
+  <netconf-yang xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-man-netconf-cfg">
+   <agent>
+    <ssh>
+     <enable/>
+    </ssh>
+   </agent>
+  </netconf-yang>
+  <netconf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-man-xml-ttyagent-cfg">
+   <agent>
+    <tty>
+     <enable/>
+    </tty>
+   </agent>
+  </netconf>
+  <host-names xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-shellutil-cfg">
+   <host-name>xrv-0</host-name>
+  </host-names>
+  <interfaces xmlns="http://openconfig.net/yang/interfaces">
+   <interface>
+    <name>Loopback0</name>
+    <config>
+     <name>Loopback0</name>
+     <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:softwareLoopback</type>
+     <enabled>true</enabled>
+    </config>
+    <subinterfaces>
+     <subinterface>
+      <index>0</index>
+      <ipv4 xmlns="http://openconfig.net/yang/interfaces/ip">
+       <addresses>
+        <address>
+         <ip>2.2.2.2</ip>
+         <config>
+          <ip>2.2.2.2</ip>
+          <prefix-length>32</prefix-length>
+         </config>
+        </address>
+       </addresses>
+      </ipv4>
+     </subinterface>
+    </subinterfaces>
+   </interface>
+   <interface>
+    <name>Loopback120</name>
+    <config>
+     <name>Loopback120</name>
+     <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:softwareLoopback</type>
+     <enabled>true</enabled>
+     <description>Ansible interface</description>
+    </config>
+    <subinterfaces>
+     <subinterface>
+      <index>0</index>
+      <ipv4 xmlns="http://openconfig.net/yang/interfaces/ip">
+       <addresses>
+        <address>
+         <ip>120.1.1.1</ip>
+         <config>
+          <ip>120.1.1.1</ip>
+          <prefix-length>32</prefix-length>
+         </config>
+        </address>
+       </addresses>
+      </ipv4>
+     </subinterface>
+    </subinterfaces>
+   </interface>
+   <interface>
+    <name>MgmtEth0/0/CPU0/0</name>
+    <config>
+     <name>MgmtEth0/0/CPU0/0</name>
+     <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:ethernetCsmacd</type>
+     <enabled>true</enabled>
+    </config>
+    <ethernet xmlns="http://openconfig.net/yang/interfaces/ethernet">
+     <config>
+      <auto-negotiate>false</auto-negotiate>
+     </config>
+    </ethernet>
+    <subinterfaces>
+     <subinterface>
+      <index>0</index>
+      <ipv4 xmlns="http://openconfig.net/yang/interfaces/ip">
+       <addresses>
+        <address>
+         <ip>192.168.200.82</ip>
+         <config>
+          <ip>192.168.200.82</ip>
+          <prefix-length>24</prefix-length>
+         </config>
+        </address>
+       </addresses>
+      </ipv4>
+     </subinterface>
+    </subinterfaces>
+   </interface>
+   <interface>
+    <name>GigabitEthernet0/0/0/0</name>
+    <config>
+     <name>GigabitEthernet0/0/0/0</name>
+     <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:ethernetCsmacd</type>
+     <enabled>true</enabled>
+    </config>
+    <ethernet xmlns="http://openconfig.net/yang/interfaces/ethernet">
+     <config>
+      <auto-negotiate>false</auto-negotiate>
+     </config>
+    </ethernet>
+    <subinterfaces>
+     <subinterface>
+      <index>0</index>
+      <ipv4 xmlns="http://openconfig.net/yang/interfaces/ip">
+       <addresses>
+        <address>
+         <ip>10.1.2.2</ip>
+         <config>
+          <ip>10.1.2.2</ip>
+          <prefix-length>30</prefix-length>
+         </config>
+        </address>
+       </addresses>
+      </ipv4>
+     </subinterface>
+    </subinterfaces>
+   </interface>
+   <interface>
+    <name>GigabitEthernet0/0/0/1</name>
+    <config>
+     <name>GigabitEthernet0/0/0/1</name>
+     <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:ethernetCsmacd</type>
+     <enabled>false</enabled>
+    </config>
+    <ethernet xmlns="http://openconfig.net/yang/interfaces/ethernet">
+     <config>
+      <auto-negotiate>false</auto-negotiate>
+     </config>
+    </ethernet>
+   </interface>
+   <interface>
+    <name>GigabitEthernet0/0/0/2</name>
+    <config>
+     <name>GigabitEthernet0/0/0/2</name>
+     <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:ethernetCsmacd</type>
+     <enabled>false</enabled>
+    </config>
+    <ethernet xmlns="http://openconfig.net/yang/interfaces/ethernet">
+     <config>
+      <auto-negotiate>false</auto-negotiate>
+     </config>
+    </ethernet>
+   </interface>
+  </interfaces>
+  <lacp xmlns="http://openconfig.net/yang/lacp">
+   <interfaces>
+    <interface>
+     <name>Loopback0</name>
+     <config>
+      <name>Loopback0</name>
+     </config>
+    </interface>
+    <interface>
+     <name>Loopback120</name>
+     <config>
+      <name>Loopback120</name>
+     </config>
+    </interface>
+    <interface>
+     <name>MgmtEth0/0/CPU0/0</name>
+     <config>
+      <name>MgmtEth0/0/CPU0/0</name>
+     </config>
+    </interface>
+    <interface>
+     <name>GigabitEthernet0/0/0/0</name>
+     <config>
+      <name>GigabitEthernet0/0/0/0</name>
+     </config>
+    </interface>
+    <interface>
+     <name>GigabitEthernet0/0/0/1</name>
+     <config>
+      <name>GigabitEthernet0/0/0/1</name>
+     </config>
+    </interface>
+    <interface>
+     <name>GigabitEthernet0/0/0/2</name>
+     <config>
+      <name>GigabitEthernet0/0/0/2</name>
+     </config>
+    </interface>
+   </interfaces>
+  </lacp>
+  <local-routes xmlns="http://openconfig.net/yang/local-routing">
+   <static-routes>
+    <static>
+     <prefix>0.0.0.0/0</prefix>
+     <config>
+      <prefix>0.0.0.0/0</prefix>
+     </config>
+     <next-hops>
+      <next-hop>
+       <index>**192.168.200.1**</index>
+       <config>
+        <index>**192.168.200.1**</index>
+        <next-hop>192.168.200.1</next-hop>
+       </config>
+      </next-hop>
+     </next-hops>
+    </static>
+   </static-routes>
+  </local-routes>
+  <bgp xmlns="http://openconfig.net/yang/bgp">
+   <global>
+    <config>
+     <as>65000</as>
+    </config>
+   </global>
+  </bgp>
+ </data>
